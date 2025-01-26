@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .input-group input {
+            width: 48%;
+            padding: 10px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>CGPA Calculator</h2>
+        <form id="cgpaForm">
+            <div class="input-group">
+                <input type="text" placeholder="Subject 1 Name" required>
+                <input type="number" id="subject1" placeholder="Subject 1 Marks" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Subject 2 Name" required>
+                <input type="number" id="subject2" placeholder="Subject 2 Marks" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Subject 3 Name" required>
+                <input type="number" id="subject3" placeholder="Subject 3 Marks" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Subject 4 Name" required>
+                <input type="number" id="subject4" placeholder="Subject 4 Marks" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Subject 5 Name" required>
+                <input type="number" id="subject5" placeholder="Subject 5 Marks" required>
+            </div>
+            <button type="button" onclick="calculateCGPA()">Calculate CGPA</button>
+        </form>
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function calculateCGPA() {
+            let subject1 = parseFloat(document.getElementById('subject1').value);
+            let subject2 = parseFloat(document.getElementById('subject2').value);
+            let subject3 = parseFloat(document.getElementById('subject3').value);
+            let subject4 = parseFloat(document.getElementById('subject4').value);
+            let subject5 = parseFloat(document.getElementById('subject5').value);
+            
+            if(isNaN(subject1) || isNaN(subject2) || isNaN(subject3) || isNaN(subject4) || isNaN(subject5)) {
+                alert('Please enter valid marks for all subjects.');
+                return;
+            }
+            
+            let totalMarks = subject1 + subject2 + subject3 + subject4 + subject5;
+            let percentage = (totalMarks / 500) * 100;
+            let cgpa;
+
+            if (percentage >= 80) {
+                cgpa = 4.00;
+            } else if (percentage >= 75) {
+                cgpa = 3.75;
+            } else if (percentage >= 70) {
+                cgpa = 3.50;
+            } else if (percentage >= 65) {
+                cgpa = 3.25;
+            } else {
+                cgpa = (percentage / 100) * 4;
+            }
+
+            document.getElementById('result').textContent = `Your CGPA is: ${cgpa.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
